@@ -15,8 +15,6 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { z } from "zod";
-
 const Page = () => {
   const {
     register,
