@@ -1916,9 +1916,9 @@
   integrity sha512-Wsnp9Go9g/l0Hb6VURmRlnVhp6kpi67S3U6hCRG4yvkDu83p8Z6/5dIH3lsmg9NYhMx5+NrjLr9Dr1PIr0vv6A==
 
 "@trpc/server@^11.0.0-next-beta.283", "@trpc/server@11.0.0-next-beta.283+44a1b58a3":
-  version "11.0.0-next-beta.283"
-  resolved "https://registry.npmjs.org/@trpc/server/-/server-11.0.0-next-beta.283.tgz"
-  integrity sha512-xIQYavC4bIn+FI1v6oZMw1+QoXw5YlZotTeHDSvG+L56MLGcWP6iDcftRuMBxe7XP/1NgF+IL2AlnWicS5KV4g==
+  version "11.0.0-next-beta.285"
+  resolved "https://registry.npmjs.org/@trpc/server/-/server-11.0.0-next-beta.285.tgz"
+  integrity sha512-lTgfaS1Y1cHIxeo/Osi6NKV4JUR+kjGxd8fenvD8CnkamESbQxVJ1hovLlPlyU8+k0G+mABJslPSW9jdpsgCAg==
 
 "@trysound/sax@0.2.0":
   version "0.2.0"
