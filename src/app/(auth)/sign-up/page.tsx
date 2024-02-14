@@ -9,6 +9,7 @@ import {
   AuthCredentialValidator,
   TAuthCredentialValidator,
 } from "@/lib/validators/account-credentials-validator";
+import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -23,6 +24,9 @@ const Page = () => {
   } = useForm<TAuthCredentialValidator>({
     resolver: zodResolver(AuthCredentialValidator),
   });
+
+  const { data } = trpc.anyApiRoute.useQuery();
+  console.log(data);
 
   const onSubmit = ({ email, password }: TAuthCredentialValidator) => {};
 
@@ -46,7 +50,7 @@ const Page = () => {
           </div>
 
           <div className="grid gap-6">
-            <form onSubmit={handleSubmit(onsubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid gap-2">
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="email">Email</Label>
