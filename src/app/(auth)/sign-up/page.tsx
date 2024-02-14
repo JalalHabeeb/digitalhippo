@@ -5,11 +5,29 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import {
+  AuthCredentialValidator,
+  TAuthCredentialValidator,
+} from "@/lib/validators/account-credentials-validator";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
 
-const page = () => {
+import { z } from "zod";
+
+const Page = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TAuthCredentialValidator>({
+    resolver: zodResolver(AuthCredentialValidator),
+  });
+
+  const onSubmit = ({ email, password }: TAuthCredentialValidator) => {};
+
   return (
     <>
       <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
@@ -30,13 +48,14 @@ const page = () => {
           </div>
 
           <div className="grid gap-6">
-            <form>
+            <form onSubmit={handleSubmit(onsubmit)}>
               <div className="grid gap-2">
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
+                    {...register("email")}
                     className={cn({
-                      "focus-visible:ring-red-500": true,
+                      "focus-visible:ring-red-500": errors.email,
                     })}
                     placeholder="you@example.com"
                   />
@@ -44,8 +63,9 @@ const page = () => {
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="password">Password</Label>
                   <Input
+                    {...register("password")}
                     className={cn({
-                      "focus-visible:ring-red-500": true,
+                      "focus-visible:ring-red-500": errors.password,
                     })}
                     placeholder="Password"
                   />
@@ -61,4 +81,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
