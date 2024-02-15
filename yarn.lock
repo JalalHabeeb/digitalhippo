@@ -1916,9 +1916,9 @@
   integrity sha512-Wsnp9Go9g/l0Hb6VURmRlnVhp6kpi67S3U6hCRG4yvkDu83p8Z6/5dIH3lsmg9NYhMx5+NrjLr9Dr1PIr0vv6A==
 
 "@trpc/server@^11.0.0-next-beta.283", "@trpc/server@11.0.0-next-beta.283+44a1b58a3":
-  version "11.0.0-next-beta.285"
-  resolved "https://registry.npmjs.org/@trpc/server/-/server-11.0.0-next-beta.285.tgz"
-  integrity sha512-lTgfaS1Y1cHIxeo/Osi6NKV4JUR+kjGxd8fenvD8CnkamESbQxVJ1hovLlPlyU8+k0G+mABJslPSW9jdpsgCAg==
+  version "11.0.0-next-beta.283"
+  resolved "https://registry.npmjs.org/@trpc/server/-/server-11.0.0-next-beta.283.tgz"
+  integrity sha512-xIQYavC4bIn+FI1v6oZMw1+QoXw5YlZotTeHDSvG+L56MLGcWP6iDcftRuMBxe7XP/1NgF+IL2AlnWicS5KV4g==
 
 "@trysound/sax@0.2.0":
   version "0.2.0"
@@ -6135,6 +6135,11 @@ node-releases@^2.0.14:
   version "2.0.14"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.14.tgz"
   integrity sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==
+
+nodemailer@^6.9.9:
+  version "6.9.9"
+  resolved "https://registry.npmjs.org/nodemailer/-/nodemailer-6.9.9.tgz"
+  integrity sha512-dexTll8zqQoVJEZPwQAKzxxtFn0qTnjdQTchoU6Re9BUUGBJiOy3YMn/0ShTW6J5M0dfQ1NeDeRTTl4oIWgQMA==
 
 nodemailer@6.9.8:
   version "6.9.8"
