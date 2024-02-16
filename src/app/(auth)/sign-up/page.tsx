@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import {
-  AuthCredentialValidator,
-  TAuthCredentialValidator,
+  AuthCredentialsValidator,
+  TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator";
 import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,12 +21,12 @@ const Page = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TAuthCredentialValidator>({
-    resolver: zodResolver(AuthCredentialValidator),
+  } = useForm<TAuthCredentialsValidator>({
+    resolver: zodResolver(AuthCredentialsValidator),
   });
 
   const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({});
-  const onSubmit = ({ email, password }: TAuthCredentialValidator) => {
+  const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
     mutate({ email, password });
   };
 
