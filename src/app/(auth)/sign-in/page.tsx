@@ -13,13 +13,18 @@ import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { ZodError } from "zod";
 
 const Page = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const isSeller = searchParams.get("as") === "seller";
+  const origin = searchParams.get("origin");
+
   const {
     register,
     handleSubmit,
@@ -28,30 +33,33 @@ const Page = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
-  const router = useRouter();
+  const { mutate: signIn } = trpc.auth.signIn.useMutation({
+    onSuccess: () => {
+      toast.success("Signed in successfully");
 
-  const { mutate } = trpc.auth.createPayloadUser.useMutation({
-    onError: (err) => {
-      if (err.data?.code === "CONFLICT") {
-        toast.error("This Email is already in use. Sign in instead?");
+      router.refresh();
+
+      if (origin) {
+        router.push(`/${origin}`);
         return;
       }
 
-      if (err instanceof ZodError) {
-        toast.error(err.issues[0].message);
+      if (isSeller) {
+        router.push("/sell");
         return;
       }
 
-      toast.error("something went wrong, please try again.");
+      router.push("/");
     },
 
-    onSuccess: ({ sentToEmail }) => {
-      toast.success(`Verification email sent to ${sentToEmail}.`);
-      router.push(`/verify-email?to=${sentToEmail}`);
+    onError: (err) => {
+      if (err.data?.code === "UNAUTHORIZED") {
+        toast.error("Invalid email or password.");
+      }
     },
   });
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
-    mutate({ email, password });
+    signIn({ email, password });
   };
 
   return (
