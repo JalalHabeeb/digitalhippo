@@ -41,6 +41,7 @@ const Page = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
+  //@ts-expect-error
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
     onSuccess: () => {
       toast.success("Signed in successfully");
@@ -76,7 +77,9 @@ const Page = () => {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
             <Icons.logo className="h-20 w-20" />
-            <h1 className="text-wxl font-bold">Sign in to your account</h1>
+            <h1 className="text-wxl font-bold">
+              Sign in to your {isSeller ? "seller" : ""} account
+            </h1>
             <Link
               className={buttonVariants({
                 variant: "link",
