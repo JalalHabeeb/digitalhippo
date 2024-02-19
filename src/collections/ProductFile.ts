@@ -24,6 +24,16 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
   });
 
   const ownProductsFileIds = products.map((prod) => prod.product_files).flat();
+
+  const { docs: orders } = await req.payload.find({
+    collection: "orders",
+    depth: 0,
+    where: {
+      user: {
+        equals: user.id,
+      },
+    },
+  });
 };
 
 export const ProductFiles: CollectionConfig = {
