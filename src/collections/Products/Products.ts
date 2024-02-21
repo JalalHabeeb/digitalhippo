@@ -45,11 +45,11 @@ export const Products: CollectionConfig = {
       required: true,
     },
     {
-      name: "product_file",
+      name: "product_files",
       label: "Products file(s)",
       type: "relationship",
       required: true,
-      relationTo: "product_file",
+      relationTo: "product_files",
       hasMany: false,
     },
     {
