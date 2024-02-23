@@ -38,6 +38,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         })}
       >
         <div className="flex flex-col w-full">
+          <ImageSlider />
           <h3 className="mt-4 font-medium text-sm text-gray-700">
             {product.name}
           </h3>
