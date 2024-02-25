@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import type SwiperType from "swiper";
 import { Pagination } from "swiper/modules";
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImageSliderProps {
   urls: string[];
@@ -53,13 +53,31 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
         >
           <ChevronRight className="h-4 w-4 text-zinc-700" />
         </button>
-        <button></button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            swiper?.slidePrev();
+          }}
+          className={cn(activeStyles, "left-3 transition", {
+            [inActiveStyles]: slideConfig.isBeginning,
+            "hover: bg-primary-300 text-primary-800 opacity-100":
+              !slideConfig.isBeginning,
+          })}
+          aria-label="previous image"
+        >
+          <ChevronLeft className="h-4 w-4 text-zinc-700" />
+        </button>
       </div>
       <Swiper
+        pagination={{
+          renderBullet: (_, className) => {
+            return `<span class='rounded-full transition ${className}'></span>`;
+          },
+        }}
         onSwiper={(swiper) => setSwiper(swiper)}
         spaceBetween={50}
-        slidesPerView="auto"
         modules={[Pagination]}
+        slidesPerView="auto"
         className="h-full w-full"
       >
         {Array.isArray(urls) &&
