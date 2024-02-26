@@ -15,9 +15,18 @@ import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import Image from "next/image";
+import { useCart } from "@/hooks/use-cart";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const Cart = () => {
-  const itemCount = 0;
+  const { items } = useCart();
+
+  const itemCount = items.length;
+
+  const cartTotal = items.reduce(
+    (total, { product }) => total + product.price,
+    0
+  );
 
   const fee = 1;
 
@@ -40,8 +49,11 @@ const Cart = () => {
         {itemCount > 0 ? (
           <>
             <div className="flex w-full flex-col pr-6">
-              {/* TODO: cart logic */}
-              cart items
+              <ScrollArea>
+                {items.map(({ product }) => (
+                  <CartItem key={product.id} />
+                ))}
+              </ScrollArea>
             </div>
             <div className="space-y-4 pr-6">
               <Separator />
@@ -57,7 +69,7 @@ const Cart = () => {
               </div>
               <div className="flex">
                 <span className="flex-1">Total</span>
-                <span>{formatPrice(fee)}</span>
+                <span>{formatPrice(cartTotal + fee)}</span>
               </div>
               <SheetFooter>
                 <SheetTrigger asChild>
