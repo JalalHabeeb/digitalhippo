@@ -154,7 +154,6 @@ const Page = () => {
                   )}
                 </p>
               </div>
-
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <div className="flex items-center text-sm text-muted-foreground">
                   <span>Flat Transaction Fee</span>
@@ -167,6 +166,23 @@ const Page = () => {
                   )}
                 </div>
               </div>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <div className="text-base font-medium text-gray-900">
+                  Order Total
+                </div>
+                <div className="text-base font-medium text-gray-900">
+                  {isMounted ? (
+                    formatPrice(cartTotal + fee)
+                  ) : (
+                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="mt-6">
+              <Button className="w-full" size="lg">
+                Checkout
+              </Button>
             </div>
           </section>
         </div>
