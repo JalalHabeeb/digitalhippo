@@ -1,14 +1,16 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { useCart } from "@/hooks/use-cart";
 import { cn, formatPrice } from "@/lib/utils";
+import { Check, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
-  const { items, removeItems } = useCart();
+  const { items, removeItem } = useCart();
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -81,7 +83,7 @@ const Page = () => {
                         </div>
                       </div>
 
-                      <div className="ml-4 flex-flex-1 flex-col justify-between sm:ml-6">
+                      <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
                         <div className="relative pr-9 sm:grid sm:grid-col-2 sm:gap-x-6 sm:pr-0">
                           <div>
                             <div className="flex justify-between">
@@ -105,7 +107,25 @@ const Page = () => {
                               {formatPrice(product.price)}
                             </p>
                           </div>
+
+                          <div className="mt-4 sm:mt-0 sm:pr-9 w-20">
+                            <div className="absolute right-0 top-0">
+                              <Button
+                                aria-label="remove product"
+                                onClick={() => removeItem(product.id)}
+                                variant="ghost"
+                              >
+                                <X className="h-5 w-5" aria-hidden="true" />
+                              </Button>
+                            </div>
+                          </div>
                         </div>
+                        <p className="mt-4 flex space-x-2 text-sm text-gray-700">
+                          <Check className="h-5 w-5 flex-shrink-0 text-green-500" />
+                          <span className="ml-2 text-sm text-muted-foreground">
+                            Eligible for instant delivery
+                          </span>
+                        </p>
                       </div>
                     </li>
                   );
