@@ -17,6 +17,7 @@ import { buttonVariants } from "./ui/button";
 import Image from "next/image";
 import { useCart } from "@/hooks/use-cart";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
+import CartItem from "./CartItem";
 
 const Cart = () => {
   const { items } = useCart();
