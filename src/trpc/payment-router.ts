@@ -70,6 +70,16 @@ export const paymentRouter = router({
           },
           line_items,
         });
-      } catch (error) {}
+
+        return {
+          url: stripeSession.url,
+        };
+      } catch (error) {
+        console.log(error);
+
+        return {
+          url: null,
+        };
+      }
     }),
 });
