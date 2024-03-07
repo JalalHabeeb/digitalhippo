@@ -60,6 +60,24 @@ const ThanksYouPage = async ({ searchParams }: PageProps) => {
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Thanks for ordering
             </h1>
+            {order._isPaid ? (
+              <p className="mt-2 text-base text-muted-foreground">
+                Your order was processed and your assets are available to{" "}
+                download below. We&apos;ve sent your receipt and order details
+                to
+                {typeof order.user !== "string" ? (
+                  <span className="font-medium text-gray-900">
+                    {order.user.email}
+                  </span>
+                ) : null}
+                .
+              </p>
+            ) : (
+              <p className="mt-2 text-base text-muted-foreground">
+                We appreciate your order, and we&apos;re currently processing
+                it. So hang tight and we&apos;ll send you confirmation very soon
+              </p>
+            )}
           </div>
         </div>
       </div>
