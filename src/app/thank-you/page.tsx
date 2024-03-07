@@ -16,8 +16,11 @@ const ThanksYouPage = () => {
       <div>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py32 xl:gap-x-42">
           <div className="lg:col-start-2">
-            <h1 className="text-sm font-medium text-blue-600">
+            <p className="text-sm font-medium text-blue-600">
               Order Successful
+            </p>
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              Thanks for ordering
             </h1>
           </div>
         </div>
