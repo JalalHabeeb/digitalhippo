@@ -3,6 +3,8 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
+import { Product, ProductFile } from "@/payload-types";
+import { PRODUCT_CATEGORIES } from "@/config";
 
 interface PageProps {
   searchParams: {
@@ -75,9 +77,42 @@ const ThanksYouPage = async ({ searchParams }: PageProps) => {
             ) : (
               <p className="mt-2 text-base text-muted-foreground">
                 We appreciate your order, and we&apos;re currently processing
-                it. So hang tight and we&apos;ll send you confirmation very soon
+                it. So hang tight and we&apos;ll send you confirmation very
+                soon!
               </p>
             )}
+
+            <div className="mt-16 text-sm font-medium">
+              <div className="text-muted-foreground">Order nr.</div>
+              <div className="mt-2 text-gray-900">{order.id}</div>
+
+              <ul className="mt-6 divide-gray-200 border-t border-gray-200 text-sm font-medium text-muted-foreground">
+                {(order.products as Product[]).map((product) => {
+                  const label = PRODUCT_CATEGORIES.find(
+                    ({ value }) => value === product.category
+                  )?.label;
+
+                  const downloadUrl = (product.product_files as ProductFile)
+                    .url as string;
+
+                  const { image } = product.images[0];
+                  return (
+                    <li key={product.id} className="flex space-x-6 py-6">
+                      <div className="relative h-24 w-24">
+                        {typeof image !== "string" && image.url ? (
+                          <Image
+                            fill
+                            src={image.url}
+                            alt={`${product.name} image`}
+                            className="flex-non rounded-md bg-gray-100 object-cover object-center"
+                          />
+                        ) : null}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
