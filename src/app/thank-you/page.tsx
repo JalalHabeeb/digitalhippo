@@ -5,6 +5,7 @@ import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
 import { Product, ProductFile } from "@/payload-types";
 import { PRODUCT_CATEGORIES } from "@/config";
+import { formatPrice } from "@/lib/utils";
 
 interface PageProps {
   searchParams: {
@@ -108,6 +109,28 @@ const ThanksYouPage = async ({ searchParams }: PageProps) => {
                           />
                         ) : null}
                       </div>
+
+                      <div className="flex-auto flex flex-col justify-between">
+                        <div className="space-y-1">
+                          <h3 className="text-gray-900">{product.name}</h3>
+
+                          <p className="my-1">Category: {label}</p>
+                        </div>
+
+                        {order._isPaid ? (
+                          <a
+                            href={downloadUrl}
+                            download={product.name}
+                            className="text-blue-600 hover:underline underline-offset-2"
+                          >
+                            Download asset
+                          </a>
+                        ) : null}
+                      </div>
+
+                      <p className="flex-non font-medium text-gray-900">
+                        {formatPrice(product.price)}
+                      </p>
                     </li>
                   );
                 })}
